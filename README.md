@@ -2,6 +2,8 @@
 
 Hey there! 👋 Welcome to my GitHub repository for the YouTube Skeleton Clone project. This is a simplified version of YouTube that I built as part of [Neetcode's Full Stack Development course](https://neetcode.io/courses/full-stack-dev/0). I wanted to share my design and development journey with you, so let's dive right in!
 
+Feel free to view current version (in beta) [here](https://yt-web-client-asxev4o2ta-uc.a.run.app).
+
 ## Table of Contents
 - [Background](#background)
 - [Project Goals](#project-goals)
