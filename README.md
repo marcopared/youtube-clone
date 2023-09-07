@@ -133,6 +133,4 @@ I relied on several references during this project:
 - [Using Pub/Sub with Cloud Storage](https://cloud.google.com/storage/docs/pubsub-notifications)
 - [Using Pub/Sub with Cloud Run](https://cloud.google.com/run/docs/tutorials/pubsub)
 
-Feel free to explore my design and project journey! If you have any questions or suggestions, please don't hesitate to reach out. Happy coding!
-
-[![Project Screenshot](screenshot_link)](project_url)
+Feel free to explore my design and project journey! If you have any questions or suggestions, please don't hesitate to reach out.
