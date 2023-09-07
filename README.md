@@ -11,6 +11,7 @@ Feel free to view current version (in beta) <a href="https://yt-web-client-asxev
 - [High-Level Overview](#high-level-overview)
 - [In-Depth Design](#in-depth-design)
 - [Challenges and Future Improvements](#challenges-and-future-improvements)
+- [Conclusion](#conclusion)
 - [References](#references)
 
 ---
@@ -83,7 +84,43 @@ It's important to note some limitations, such as Cloud Run request timeouts, Pub
 
 ## Challenges and Future Improvements
 
-For a more comprehensive list of challenges and potential enhancements, please check out the [Challenges and Future Improvements Section](#challenges-and-future-improvements) in the design document.
+### Limitations
+
+**1. Long Lived HTTP Requests**
+For Pub/Sub, the max ack deadline is 600 seconds, but the max request processing time for Cloud Run is 3600 seconds. If video processing takes longer than 600 seconds, Pub/Sub will close the HTTP connection, causing the message to be stuck in the queue. To address this, we can switch to the Pull Subscription method, allowing us to control when we pull and process messages, and acknowledge them within the ack deadline.
+
+**2. Video Processing Failure**
+If video processing fails after pulling a message from the Pub/Sub queue and changing its status to "processing" in Firestore, the message can be stuck in the queue indefinitely. To mitigate this, we could reset the status to "undefined" if processing fails.
+
+**3. File Upload Time Limit**
+The signed URL we generate is valid for 15 minutes, but slow internet connections may pose a challenge. However, as long as the upload begins within the 15-minute window, it will continue even after the signed URL expires, as it's used solely for authentication.
+
+**4. Video Streaming**
+While Google Cloud Storage offers basic video streaming, it's not as powerful as YouTube's custom video streaming solutions like DASH and HLS. These solutions allow adaptive streaming and chunked video delivery for a smoother viewing experience.
+
+**5. Content Delivery Network**
+Serving videos from a Content Delivery Network (CDN) would enhance user experience by reducing latency. Videos served from a geographically close server would load faster.
+
+### Future Work
+
+Here's a list of potential improvements and features for the future:
+
+- Add user's profile picture and email to the web client.
+- Allow users to upload multiple videos without refreshing the page.
+- Enable users to upload thumbnails for their videos.
+- Allow users to add titles and descriptions to their videos.
+- Display the uploader's information for each video.
+- Implement user subscriptions to other user's channels.
+- Implement automatic cleanup of raw videos in Cloud Storage after processing.
+- Integrate a CDN to serve videos and reduce latency.
+- Consider adding unit and integration tests for improved code quality.
+
+## Conclusion
+
+Thank you for taking the time to explore this project! I hope you've gained valuable insights into designing and architecting applications. Remember, there are many nuances in application design, and it often involves making trade-offs. Building an app like Twitter or YouTube is a complex endeavor that takes time and effort.
+
+Your feedback is highly appreciated as I continuously strive to improve this project. Feel free to share your thoughts and suggestions!
+
 
 ## References
 
