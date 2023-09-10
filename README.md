@@ -43,7 +43,7 @@ Before we delve into the design, let me introduce the technologies I used:
 
 ## High-Level Overview
 
-![High-Level Architecture Diagram](public/high-level-architecture.avif)
+![High-Level Architecture Diagram](public/high-level-architecture.png)
 
 Here's a bird's-eye view of the project's architecture:
 
